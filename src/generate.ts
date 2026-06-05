@@ -56,6 +56,7 @@ export function generateSchema({
         topRef: false,
         encodeRefs: false,
         additionalProperties: true,
+        skipTypeCheck: true,
     });
 
     const { $id, $schema, definitions, ...fields } = generator.createSchema(

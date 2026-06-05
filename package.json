@@ -2,14 +2,14 @@
     "name": "actor-schema-generator",
     "module": "index.ts",
     "type": "module",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "main": "./dist/index.js",
         "bin": "./dist/index.js",
         "files": [ "./dist" ],
         "scripts": {
             "build": "bun run build.ts",
             "test": "bun test",
-            "prepublish": "npm run build"
+            "prepare": "npm run build"
         },
     "devDependencies": {
         "@types/bun": "latest"

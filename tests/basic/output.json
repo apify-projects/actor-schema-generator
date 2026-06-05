@@ -1,0 +1,12 @@
+{
+    "$schema": "https://apify.com/schemas/v1/dataset.json",
+    "fields": {
+        "type": "object",
+        "properties": {
+            "id": { "type": "string" },
+            "count": { "type": "number" },
+            "active": { "type": "boolean" }
+        },
+        "required": ["id", "count", "active"]
+    }
+}

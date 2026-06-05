@@ -1,0 +1,9 @@
+{
+    "$schema": "https://apify.com/schemas/v1/actor.json",
+    "actorSpecification": 1,
+    "buildTag": "latest",
+    "defaultMemoryMbytes": 256,
+    "storages": {
+        "dataset": "./dataset_schema.json"
+    }
+}

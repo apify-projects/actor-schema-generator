@@ -1,0 +1,55 @@
+{
+    "$schema": "https://apify.com/schemas/v1/dataset.json",
+    "actorSpecification": 1,
+    "fields": {
+        "type": "object",
+        "properties": {
+            "id": {
+                "type": "string"
+            },
+            "other": {
+                "type": "object",
+                "properties": {
+                    "lala": {
+                        "type": "number"
+                    }
+                },
+                "required": [
+                    "lala"
+                ],
+                "additionalProperties": false
+            },
+            "nullableValue": {
+                "type": [
+                    "object",
+                    "null"
+                ],
+                "properties": {
+                    "nested": {
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "nested"
+                ],
+                "additionalProperties": false
+            }
+        },
+        "required": [
+            "id",
+            "other"
+        ],
+        "additionalProperties": false
+    },
+    "views": {
+        "default": {
+            "title": "Overview",
+            "display": {
+                "component": "table",
+                "properties": {
+                    "id": true
+                }
+            }
+        }
+    }
+}

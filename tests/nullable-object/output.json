@@ -1,0 +1,18 @@
+{
+    "$schema": "https://apify.com/schemas/v1/dataset.json",
+    "fields": {
+        "type": "object",
+        "properties": {
+            "id": { "type": "string" },
+            "meta": {
+                "type": ["object", "null"],
+                "properties": {
+                    "url": { "type": "string" },
+                    "score": { "type": "number" }
+                },
+                "required": ["url", "score"]
+            }
+        },
+        "required": ["id", "meta"]
+    }
+}

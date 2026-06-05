@@ -1,0 +1,11 @@
+{
+    "$schema": "https://apify.com/schemas/v1/dataset.json",
+    "fields": {
+        "type": "object",
+        "properties": {
+            "id": { "type": "string" },
+            "name": { "type": ["string", "null"] }
+        },
+        "required": ["id", "name"]
+    }
+}

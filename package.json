@@ -1,0 +1,17 @@
+{
+  "name": "actor-schema-generator",
+  "module": "index.ts",
+  "type": "module",
+  "version": "0.0.1",
+  "private": true,
+  "devDependencies": {
+    "@types/bun": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5"
+  },
+  "dependencies": {
+    "commander": "^15.0.0",
+    "ts-json-schema-generator": "^2.9.0"
+  }
+}

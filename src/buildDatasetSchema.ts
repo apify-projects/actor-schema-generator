@@ -1,5 +1,5 @@
 import { existsSync, readFileSync } from "fs";
-import { generateSchema } from "./generate";
+import { generateSchema } from "./generate.js";
 
 export function buildDatasetSchema({
     inputPath,

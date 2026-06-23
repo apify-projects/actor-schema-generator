@@ -9,18 +9,32 @@ export function collapseNullableAnyOf(node: SchemaNode): SchemaNode {
         const items = node.anyOf as SchemaNode[];
         if (items.length > 2)
             throw new Error(`Unsupported anyOf with ${items.length} items`);
-        const nullIdx = items.findIndex(
-            (item) => Object.keys(item).length === 1 && item.type === "null",
-        );
-        if (nullIdx !== -1) {
-            const other = items[nullIdx === 0 ? 1 : 0]!;
-            const { anyOf, ...rest } = node;
-            const otherType = other.type;
-            const type = Array.isArray(otherType)
-                ? [...otherType, "null"]
-                : [otherType, "null"];
-            return { ...rest, ...other, type };
+        const hasObject = items.some((item) => item.type === "object");
+        const hasArray = items.some((item) => item.type === "array");
+        if (hasObject && hasArray) {
+            console.warn("Unsupported anyOf: object and array types cannot be merged, leaving as anyOf");
+            return node;
         }
+
+        const { anyOf, ...rest } = node;
+        const types: unknown[] = [];
+        const mergedProps: SchemaNode = {};
+        let hasNull = false;
+
+        for (const item of items) {
+            const { type, ...itemRest } = item;
+            if (type === "null") {
+                hasNull = true;
+            } else if (Array.isArray(type)) {
+                for (const t of type) t === "null" ? (hasNull = true) : types.push(t);
+            } else {
+                types.push(type);
+            }
+            Object.assign(mergedProps, itemRest);
+        }
+        if (hasNull) types.push("null");
+
+        return { ...rest, ...mergedProps, type: types };
     }
 
     const result: SchemaNode = {};

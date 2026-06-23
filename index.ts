@@ -2,7 +2,7 @@ import { Command } from "commander";
 import { existsSync, readFileSync, writeFileSync } from "fs";
 import { resolve, dirname } from "path";
 import pkg from "./package.json" with { type: "json" };
-import { buildDatasetSchema } from "./src/buildDatasetSchema";
+import { buildDatasetSchema } from "./src/buildDatasetSchema.js";
 
 function innerHandle(e: unknown) {
     if (e instanceof Error) {
@@ -13,7 +13,7 @@ function innerHandle(e: unknown) {
     process.exit(1);
 }
 
-export function handleErrors<Fn extends (...args: any[]) => any>(fn: Fn) {
+function handleErrors<Fn extends (...args: any[]) => any>(fn: Fn) {
     return (...args: Parameters<Fn>) => {
         try {
             return fn(...args).catch(innerHandle);

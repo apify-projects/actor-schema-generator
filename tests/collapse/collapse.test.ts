@@ -46,8 +46,15 @@ test("throws on anyOf with more than 2 items", () => {
     })).toThrow("Unsupported anyOf with 3 items");
 });
 
-test("throws on anyOf with no null variant", () => {
-    expect(() => collapseNullableAnyOf({
+test("collapses anyOf with no null variant", () => {
+    expect(collapseNullableAnyOf({
         anyOf: [{ type: "string" }, { type: "number" }],
-    })).toThrow("Unsupported anyOf: no null variant found");
+    })).toEqual({ type: ["string", "number"] });
+});
+
+test("leaves anyOf with both object and array unchanged", () => {
+    const input = {
+        anyOf: [{ type: "object", additionalProperties: {} }, { type: "array", items: { type: "string" } }],
+    };
+    expect(collapseNullableAnyOf(input)).toEqual(input);
 });
